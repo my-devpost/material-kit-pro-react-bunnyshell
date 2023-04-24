@@ -22,3 +22,25 @@ COPY . .
 EXPOSE 8080
 
 CMD ["npm", "start"]
+
+
+
+# prod (and build) stages
+FROM dev AS build
+
+RUN npm run build
+
+
+
+# Nginx stage
+FROM nginx:1.21.3-alpine AS prod
+
+# Copy the built app to the Nginx HTML directory
+COPY --from=build /usr/src/app/build /usr/share/nginx/html
+
+COPY nginx.conf  /etc/nginx/conf.d/default.conf
+
+EXPOSE 8080
+
+# Start Nginx
+CMD ["nginx", "-g", "daemon off;"]
