@@ -5,8 +5,6 @@ services:
       build:
         context: ./frontend
         target: ${FRONTEND_BUILD_TARGET:-dev} # use "prod" for production
-        args:
-          REACT_APP_BASE_API: ${BACKEND_URL-http://material-kit-backend.local.bunnyshell.com:3080}
       volumes:
         - ./frontend:/var/www/frontend:delegated
       ports:
