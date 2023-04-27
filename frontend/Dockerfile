@@ -19,7 +19,7 @@ RUN npm i
 # - copy the rest of the code (except the ones in .dockerignore) (optimise image build - we expect these to change everytime, so keep this as late as possible)
 COPY . .
 
-EXPOSE 8080
+EXPOSE 3000
 
 CMD ["npm", "start"]
 
