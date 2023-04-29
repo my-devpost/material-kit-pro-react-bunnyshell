@@ -1,9 +1,11 @@
 version: '3.4'
 services:
   frontend:
-      container_name: bunnyshell-material-kit-frontend
+      container_name: material-kit-frontend
       build:
         context: ./frontend
-        target: dev
+        target: ${FRONTEND_BUILD_TARGET:-dev} # use "prod" for production
+      volumes:
+        - ./frontend:/var/www/frontend:delegated
       ports:
         - "8080:8080"
